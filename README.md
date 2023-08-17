@@ -1,2 +1,0 @@
-# DataStructures-Algorithms
-Lab everyday

@@ -1,15 +1,13 @@
-import java.io.*;
-
 import implementations.Queue;
 import implementations.Stack;
+import java.io.*;
+import java.lang.reflect.Method;
 
 public class Main {
     public static Queue<String> queue = new Queue<>();
     public static Stack<String> stack = new Stack<>();
-
     public static void main(String[] args) {
-        System.out.println("----------------------------------------");
-        System.out.println("    KMessage                      v5.8.0");
+        System.out.println("MESSENGER");
         Methods.Menu();
         int choice = 0;
         do {
@@ -28,50 +26,64 @@ public class Main {
                 continue;
             }
             switch (choice) {
-                case 1:
-                    Methods.ImportMessages(stack);
-                    Methods.Menu();
-                    break;
-                case 2:
-                    System.out.println("    Enter message (End with //)");
+                case 1://enter message
+                    System.out.println("Enter message");
                     try {
-                        String[] message = Methods.LeaveMessage(new BufferedReader(new InputStreamReader(System.in)));
-                        double beginTime = System.currentTimeMillis();
+                        String[] message = Methods.SendMessage(new BufferedReader(new InputStreamReader(System.in)));
+//                        double beginTime = System.currentTimeMillis();
                         Methods.Transfer(message, queue);
-                        Methods.Process(queue, stack);
-                        double endTime = System.currentTimeMillis();
-                        double time = endTime - beginTime;
-                        System.out.println("|*| Time: " + time + "ms");
+//                        Methods.Process(queue, stack);
+//                        double endTime = System.currentTimeMillis();
+//                        double time = endTime - beginTime;
+//                        System.out.println("|*| Time: " + time + "ms");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     Methods.Menu();
                     break;
-                case 3:
+                case 2: //print message in queue
+//                    try
+//                    {
+//                        if (queue.size() == 0) {
+//                        throw new Exception("No messages found.");
+//                    }
+//                    else
+//                    {
+//                    System.out.println("All messages received:");
+//                    for (String message : queue)
+//                        {System.out.println(message);}
+//                    }
+//                    }
+//                    catch (Exception e)
+//                    {System.out.println("Warning: " + e.getMessage());}
+//                    break;
+                    Methods.PrintMessage(queue);
+                    break;
+                case 3: //send message from queue to stack
+                    Methods.Process(queue, stack);
+                    double beginTime = System.nanoTime();
+                    double endTime = System.nanoTime();
+                    double time = endTime - beginTime;
+                    System.out.println("|*| Time: " + time + "ns");
+                    break;
+                case 4: //print newest message
                     Methods.PrintNewestMessage(stack);
                     Methods.Menu();
                     break;
-                case 4:
-                    Methods.PrintAllMessages(stack);
+                case 5: //print all message in stack
+                    Methods.SPrintAllMessages(stack);
                     Methods.Menu();
                     break;
-                case 5:
-                    Methods.ExportAllMessages(stack);
-                    Methods.Menu();
-                    break;
-                case 6:
+                case 6: //delete newest message in stack
                     Methods.DeleteNewestMessage(stack);
-                    Methods.PrintAllMessages(stack);
+                    Methods.SPrintAllMessages(stack);
                     Methods.Menu();
                     break;
-                case 7:
+                case 7: //statistics
                     Methods.Statistics(stack);
                     Methods.Menu();
                     break;
-                case 8:
-                    System.out.println("----------------------------------------");
-                    System.out.println("    KMessage                      v5.8.0");
-                    System.out.println("----------------------------------------");
+                case 8: //exit
                     System.exit(0);
                     break;
                 default:
