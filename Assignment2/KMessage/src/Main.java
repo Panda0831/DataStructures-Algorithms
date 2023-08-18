@@ -1,8 +1,6 @@
 import implementations.Queue;
 import implementations.Stack;
 import java.io.*;
-import java.lang.reflect.Method;
-
 public class Main {
     public static Queue<String> queue = new Queue<>();
     public static Stack<String> stack = new Stack<>();
@@ -30,41 +28,23 @@ public class Main {
                     System.out.println("Enter message");
                     try {
                         String[] message = Methods.SendMessage(new BufferedReader(new InputStreamReader(System.in)));
-//                        double beginTime = System.currentTimeMillis();
                         Methods.Transfer(message, queue);
-//                        Methods.Process(queue, stack);
-//                        double endTime = System.currentTimeMillis();
-//                        double time = endTime - beginTime;
-//                        System.out.println("|*| Time: " + time + "ms");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     Methods.Menu();
                     break;
                 case 2: //print message in queue
-//                    try
-//                    {
-//                        if (queue.size() == 0) {
-//                        throw new Exception("No messages found.");
-//                    }
-//                    else
-//                    {
-//                    System.out.println("All messages received:");
-//                    for (String message : queue)
-//                        {System.out.println(message);}
-//                    }
-//                    }
-//                    catch (Exception e)
-//                    {System.out.println("Warning: " + e.getMessage());}
-//                    break;
                     Methods.PrintMessage(queue);
+                    Methods.Menu();
                     break;
                 case 3: //send message from queue to stack
                     Methods.Process(queue, stack);
                     double beginTime = System.nanoTime();
                     double endTime = System.nanoTime();
                     double time = endTime - beginTime;
-                    System.out.println("|*| Time: " + time + "ns");
+                    System.out.println("Time: " + time + "ns");
+                    Methods.Menu();
                     break;
                 case 4: //print newest message
                     Methods.PrintNewestMessage(stack);
@@ -79,17 +59,13 @@ public class Main {
                     Methods.SPrintAllMessages(stack);
                     Methods.Menu();
                     break;
-                case 7: //statistics
-                    Methods.Statistics(stack);
-                    Methods.Menu();
-                    break;
-                case 8: //exit
+                case 7: //exit
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid choice! Please enter a number.");
                     break;
             }
-        } while (choice != 8);
+        } while (choice != 7);
     }
 }

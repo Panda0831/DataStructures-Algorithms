@@ -1,27 +1,20 @@
 package implementations;
-
 import interfaces.AbstractQueue;
-
 import java.util.Iterator;
-
 public class Queue<E> implements AbstractQueue<E> {
     private Node<E> head;
     private int size;
-
     private static class Node<E> {
         private E element;
         private Node<E> next;
-
         public Node(E element) {
             this.element = element;
         }
     }
-
     public Queue() {
         this.head = null;
         this.size = 0;
     }
-
     @Override
     public int size() {
         return this.size;
@@ -32,7 +25,6 @@ public class Queue<E> implements AbstractQueue<E> {
             throw new IllegalStateException("Queue is empty");
         }
     }
-
     @Override
     public void enqueue(E element) {
         Node<E> newNode = new Node<>(element);
@@ -47,7 +39,6 @@ public class Queue<E> implements AbstractQueue<E> {
         }
         this.size++;
     }
-
     @Override
     public E dequeue() {
         ensureNonEmpty();
@@ -58,13 +49,11 @@ public class Queue<E> implements AbstractQueue<E> {
         this.size--;
         return element;
     }
-
     @Override
     public E peek() {
         ensureNonEmpty();
         return this.head.element;
     }
-
     @Override
     public boolean isEmpty() {
         if (this.size == 0) {
@@ -73,17 +62,14 @@ public class Queue<E> implements AbstractQueue<E> {
             return false;
         }
     }
-
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private Node<E> current = head;
-
             @Override
             public boolean hasNext() {
                 return current != null;
             }
-
             @Override
             public E next() {
                 E element = current.element;

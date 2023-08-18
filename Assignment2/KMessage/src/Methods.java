@@ -24,15 +24,13 @@ public class Methods {
     System.out.println("4. Print out the newest message");
     System.out.println("5. Print out all conversations");
     System.out.println("6. Delete the newest message");
-    System.out.println("7. Statistics");
-    System.out.println("8. Exit");
+    System.out.println("7. Exit");
     System.out.print("Enter your choice: ");
   }
 
   public static String[] SendMessage(BufferedReader reader) throws IOException {
     boolean validMessage = false;
     String[] message = null;
-
     while (!validMessage) {
       try {
         String input = reader.readLine();
@@ -136,22 +134,22 @@ public class Methods {
     }
   }
 
-  public static void Statistics(Stack<String> stack) {
-    try {
-      if (stack.size() == 0) {
-        throw new Exception("No messages found.");
-      } else {
-        System.out.println("Number of conversations received: " + stack.size());
-        int totalLength = 0;
-        for (String message : stack) {
-          totalLength += message.length();
-        }
-        double averageLength = (double) totalLength / stack.size();
-        long roundedAverageLength = Math.round(averageLength);
-        System.out.println("Average length of messages: " + roundedAverageLength);
-      }
-    } catch (Exception e) {
-      System.out.println("Warning: " + e.getMessage());
-    }
-  }
+//  public static void Statistics(Stack<String> stack) {
+//    try {
+//      if (stack.size() == 0) {
+//        throw new Exception("No messages found.");
+//      } else {
+//        System.out.println("Number of conversations received: " + stack.size());
+//        int totalLength = 0;
+//        for (String message : stack) {
+//          totalLength += message.length();
+//        }
+//        double averageLength = (double) totalLength / stack.size();
+//        long roundedAverageLength = Math.round(averageLength);
+//        System.out.println("Average length of messages: " + roundedAverageLength);
+//      }
+//    } catch (Exception e) {
+//      System.out.println("Warning: " + e.getMessage());
+//    }
+//  }
 }
